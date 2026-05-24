@@ -40,7 +40,7 @@ long yPos = 0;
 // declare speed
 float gSpeed = 10000.0;
 
-// Read a pin only if it stays LOW for all samples — filters motor noise
+// Read a pin only if it stays LOW for all samples - filters motor noise
 int stableRead(int pin, int samples = 5, int delayMs = 1) {
   for (int i = 0; i < samples; i++) {
     if (digitalRead(pin) != LOW) return HIGH;
