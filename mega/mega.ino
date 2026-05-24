@@ -40,6 +40,15 @@ long yPos = 0;
 // declare speed
 float gSpeed = 10000.0;
 
+// Read a pin only if it stays LOW for all samples — filters motor noise
+int stableRead(int pin, int samples = 5, int delayMs = 1) {
+  for (int i = 0; i < samples; i++) {
+    if (digitalRead(pin) != LOW) return HIGH;
+    delay(delayMs);
+  }
+  return LOW;
+}
+
 // Define structures for character positions
 struct Position
 {
@@ -318,8 +327,8 @@ bool calibrateX()
   {
     if (!done)
     {
-      int kontaktXt = digitalRead(kontXtPin);
-      int kontaktXb = digitalRead(kontXbPin);
+      int kontaktXt = stableRead(kontXtPin);
+      int kontaktXb = stableRead(kontXbPin);
       if (direction == 1)
       {
         if (kontaktXt == 1)
@@ -370,8 +379,8 @@ bool calibrateY()
   {
     if (!done)
     {
-      int kontaktYl = digitalRead(kontYlPin);
-      int kontaktYr = digitalRead(kontYrPin);
+      int kontaktYl = stableRead(kontYlPin);
+      int kontaktYr = stableRead(kontYrPin);
 
       if (direction == 0)
       {
