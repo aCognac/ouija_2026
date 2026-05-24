@@ -40,6 +40,13 @@ long yPos = 0;
 // declare speed
 float gSpeed = 10000.0;
 
+// Define structures for character positions
+struct Position
+{
+  int x; // X coordinate (0-50)
+  int y; // Y coordinate (0-50)
+};
+
 // Read a pin only if it stays LOW for all samples - filters motor noise
 int stableRead(int pin, int samples = 5, int delayMs = 1) {
   for (int i = 0; i < samples; i++) {
@@ -48,13 +55,6 @@ int stableRead(int pin, int samples = 5, int delayMs = 1) {
   }
   return LOW;
 }
-
-// Define structures for character positions
-struct Position
-{
-  int x; // X coordinate (0-50)
-  int y; // Y coordinate (0-50)
-};
 
 #define NUM_LETTERS 26
 #define NUM_NUMBERS 10
